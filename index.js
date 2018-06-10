@@ -41,7 +41,7 @@ function compare(a, b) {
 
 function gitInfo(command, parcer,raw){
     return new Promise(function(resolve, reject) {
-      exec(command, { cwd: __dirname }, function (err, stdout, stderr) {
+      exec(command, { cwd: process.cwd() || __dirname }, function (err, stdout, stderr) {
         var output = (raw) ? stdout : stdout.split('\n').join('').trim();
         resolve((parcer)?parcer(output):output)
       })
